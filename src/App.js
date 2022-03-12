@@ -2,13 +2,14 @@ import React, {useEffect, useState} from "react";
 import Categories from "./Categories";
 import axios from "axios";
 import Menu from './components/Menu'
+import {CircularProgress} from '@mui/material'
 
 function App() {
   const [menuItems, setMenuItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [filteredFoodList, setFilteredFoodList] = useState([])
   const [categories, setCategories] = useState([])
-
+  const [isLoading, setIsLoading] = useState(true)
 
   //Millana
 
@@ -28,6 +29,7 @@ function App() {
   }
   useEffect(() => {
     getData()
+    setIsLoading(false)
   }, [])
 
   useEffect(() => {
@@ -37,18 +39,22 @@ function App() {
 
   const categoryList = ["all", ...new Set(menuItems.map((item) => item.category))];
 
-  return (
-    <main>
-      <section className="menu section">
-        <div className="title">
-          <h2>our menu</h2>
-          <div className="underline"></div>
-        </div>
-        <Categories filteredFoodList={filteredFoodList} categoryList={categoryList} setSelectedCategory={setSelectedCategory} />
-        <Menu data={menuItems} filteredData={filteredFoodList} />
-      </section>
-    </main>
-  );
+  return isLoading ? <div>
+    <h1>Is Loading...</h1>
+    <CircularProgress />
+  </div> :
+    (
+      <main>
+        <section className="menu section">
+          <div className="title">
+            <h2>our menu</h2>
+            <div className="underline"></div>
+          </div>
+          <Categories filteredFoodList={filteredFoodList} categoryList={categoryList} setSelectedCategory={setSelectedCategory} />
+          <Menu data={menuItems} filteredData={filteredFoodList} />
+        </section>
+      </main>
+    );
 }
 
 export default App;
