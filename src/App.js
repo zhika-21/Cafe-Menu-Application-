@@ -18,7 +18,7 @@ function App() {
   const getData = async () => {
     try {
       const api = await axios.get("https://mocki.io/v1/a017e031-466a-4a49-891e-85495999669c")
-      console.log(api.data)
+
       setMenuItems(api.data)
       setFilteredFoodList(api.data)
     } catch (err) {
@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     let filtered = menuItems.filter((item) => item.category === selectedCategory || selectedCategory === "all");
     setFilteredFoodList(filtered);
-  }, [])
+  }, [selectedCategory])
 
   const categoryList = ["all", ...new Set(menuItems.map((item) => item.category))];
 
@@ -44,7 +44,7 @@ function App() {
           <h2>our menu</h2>
           <div className="underline"></div>
         </div>
-        <Categories filteredFoodList={filteredFoodList} categoryList={categoryList} />
+        <Categories filteredFoodList={filteredFoodList} categoryList={categoryList} setSelectedCategory={setSelectedCategory} />
         <Menu data={menuItems} filteredData={filteredFoodList} />
       </section>
     </main>

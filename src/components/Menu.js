@@ -1,7 +1,10 @@
 import React from "react";
 import OrderButton from "./orderBtn";
+import {useState} from "react";
+
 
 export const Menu = ({filteredData}) => {
+  const [count, setCount] = useState(0)
 
   return (
     <div className="section-center">
@@ -18,12 +21,14 @@ export const Menu = ({filteredData}) => {
                 </header>
                 <p className="item-text">{el.desc}</p>
               </div>
+              {<div><OrderButton /> </div>}
             </article>
-            {<OrderButton />}
+
           </>
         );
 
       })}
+
 
     </div>
   );
