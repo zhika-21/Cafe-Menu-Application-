@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Categories from "./Categories";
 import axios from "axios";
+import Menu from "./components/Menu"
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
           <div className="underline"></div>
         </div>
         <Categories categories={categories} filteredFoodList={filteredFoodList} />
-        {/* <Menu data={data} /> */}
+        <Menu data={data} />
       </section>
     </main>
   );
