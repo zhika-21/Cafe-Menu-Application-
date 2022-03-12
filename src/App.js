@@ -3,13 +3,14 @@ import Categories from "./Categories";
 import axios from "axios";
 import Menu from './components/Menu'
 import {CircularProgress} from '@mui/material'
-
+import Basket from './components/basket'
 function App() {
   const [menuItems, setMenuItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [filteredFoodList, setFilteredFoodList] = useState([])
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [order, setOrder] = useState([])
 
   //Millana
 
@@ -51,7 +52,9 @@ function App() {
             <div className="underline"></div>
           </div>
           <Categories filteredFoodList={filteredFoodList} categoryList={categoryList} setSelectedCategory={setSelectedCategory} />
-          <Menu data={menuItems} filteredData={filteredFoodList} />
+          <Menu data={menuItems} filteredData={filteredFoodList} setOrder={setOrder} />
+
+          <Basket order={order} />
         </section>
       </main>
     );

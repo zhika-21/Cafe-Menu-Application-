@@ -3,7 +3,7 @@ import OrderButton from "./orderBtn";
 import {useState} from "react";
 
 
-export const Menu = ({filteredData}) => {
+export const Menu = ({filteredData, setOrder}) => {
   const [count, setCount] = useState(0)
 
   return (
@@ -21,12 +21,12 @@ export const Menu = ({filteredData}) => {
                 </header>
                 <p className="item-text">{el.desc}</p>
               </div>
-              {<div><OrderButton /> </div>}
+              {<div><OrderButton filteredData={filteredData} setOrder={setOrder} /> </div>}
             </article>
 
           </>
         );
-///// doing some changes 
+        ///// doing some changes 
       })}
 
 
