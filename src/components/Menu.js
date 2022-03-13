@@ -1,14 +1,10 @@
 import React from "react";
 import OrderButton from "./orderBtn";
-import {useState} from "react";
 
-
-export const Menu = ({filteredData, setOrder}) => {
-  const [count, setCount] = useState(0)
-
+export const Menu = ({data, setOrder, setTotal}) => {
   return (
     <div className="section-center">
-      {filteredData.map((el, index) => {
+      {data.map((el, index) => {
         //const {id, title, img, desc, price} = el;
         return (
           <>
@@ -20,8 +16,8 @@ export const Menu = ({filteredData, setOrder}) => {
                   <h4 className="price">{el.price}</h4>
                 </header>
                 <p className="item-text">{el.desc}</p>
+                <OrderButton data={el} setOrder={setOrder}  setTotal={setTotal}/>
               </div>
-              {<div><OrderButton filteredData={filteredData} setOrder={setOrder} /> </div>}
             </article>
 
           </>
