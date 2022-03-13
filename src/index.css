@@ -149,6 +149,7 @@ Menu
   text-align: center;
   margin-bottom: 2rem;
 }
+
 .underline {
   width: 5rem;
   height: 0.25rem;
@@ -233,4 +234,20 @@ Menu
   .photo {
     height: 150px;
   }
+}
+.span-basket{
+  font-size: 25px;
+}
+.loading-page{
+  font: 30px;
+  text-align: center;
+}
+.modal-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #000;
+    box-shadow: 24;
+    padding: 4
 }
