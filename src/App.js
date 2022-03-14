@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import Categories from "./Categories";
+import Categories from "./components/Categories";
 import axios from "axios";
 import Menu from './components/Menu'
 import {CircularProgress} from '@mui/material'
-import Basket from './components/basket'
-// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ModalPage from "./components/ModalPage";
+
+
 function App() {
   const [menuItems, setMenuItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -42,22 +42,26 @@ function App() {
 
   const categoryList = ["all", ...new Set(menuItems.map((item) => item.category))];
 
-  return isLoading ? 
-  <div className="loading-page">
-  <h3>Page is loading</h3>
-  <CircularProgress />
-  </div>
-  :
+  return isLoading ?
+    <div className="loading-page">
+      <h3>Page is loading</h3>
+      <CircularProgress />
+    </div>
+    :
     (
       <main>
         <section className="menu section">
           <div className="title">
             <h2>our menu</h2>
-            <ModalPage order={order} total={total}/>
+            <ModalPage order={order} total={total} />
             <div className="underline"></div>
           </div>
-          <Categories filteredFoodList={filteredFoodList} categoryList={categoryList} setSelectedCategory={setSelectedCategory} />
-          <Menu data={menuItems} filteredData={filteredFoodList} setOrder={setOrder} setTotal={setTotal}/>
+          <Categories categoryList={categoryList} setSelectedCategory={setSelectedCategory} />
+          <div className="box-grid">
+            {filteredFoodList.map(el =>
+              <Menu data={el} filteredData={filteredFoodList} setOrder={setOrder} setTotal={setTotal} />
+            )}
+          </div>
         </section>
       </main>
     );
